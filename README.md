@@ -159,8 +159,8 @@ To tailor the `recipes` and `interactions` datasets for our use, we conducted th
 
 <iframe
   src="num-cals.html"
-  width="600"
-  height="400"
+  width="800"
+  height="500"
   frameborder="0"
 ></iframe>
 
@@ -171,7 +171,7 @@ We see a heavily right skewed distribution of calorie counts. There is a wide ra
 <iframe
   src="k-nonk-rating.html"
   width="800"
-  height="600"
+  height="500"
   frameborder="0"
 ></iframe>
 
@@ -254,7 +254,7 @@ Moving on to investigate the missingness of the 'description' column, we hypothe
 <iframe
   src="cals-missi-descr.html"
   width="800"
-  height="600"
+  height="500"
   frameborder="0"
 ></iframe>
 
@@ -263,7 +263,7 @@ It seems that the distributions of calories for recipes with (orange) and withou
 <iframe
   src="cals-diff-missi-descr.html"
   width="800"
-  height="600"
+  height="500"
   frameborder="0"
 ></iframe>
 
@@ -283,7 +283,7 @@ Because the p-value for our experiment is greater than our significance level of
 <iframe
   src="ingr-missi-descr.html"
   width="800"
-  height="600"
+  height="500"
   frameborder="0"
 ></iframe>
 
@@ -292,7 +292,7 @@ The distributions of the number of ingredients for recipes with (orange) and wit
 <iframe
   src="ingr-diff-missi-descr.html"
   width="800"
-  height="600"
+  height="500"
   frameborder="0"
 ></iframe>
 
@@ -315,7 +315,7 @@ We split our dataset into two groups, recipes rated in the years 2008-2012 and t
 <iframe
   src="k-nonk-per-yr.html"
   width="800"
-  height="600"
+  height="500"
   frameborder="0"
 ></iframe>
 
@@ -332,7 +332,7 @@ Most recipes, keto or non-keto, were made in the first half of our time interval
 <iframe
   src="keto-time.html"
   width="800"
-  height="600"
+  height="500"
   frameborder="0"
 ></iframe>
 
@@ -425,7 +425,7 @@ Does my model perform worse for recipes that did not receive the highest rating 
 <iframe
   src="prec-diff-5-non5.html"
   width="800"
-  height="600"
+  height="500"
   frameborder="0"
 ></iframe>
 
