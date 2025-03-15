@@ -169,7 +169,7 @@ We see a heavily right skewed distribution of calorie counts. There is a wide ra
 ### Bivariate Analysis
 
 <iframe
-  src="plots/k-nonk-rating.html"
+  src="k-nonk-rating.html"
   width="800"
   height="600"
   frameborder="0"
