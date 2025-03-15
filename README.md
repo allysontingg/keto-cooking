@@ -14,6 +14,7 @@ Answering these questions is not only useful for bloggers looking to label their
 In this project, we analyze two datasets, `recipes` and `interactions`, from [food.com](https://www.food.com/). Our datasets contain information about recipes and recipe reviews spanning from 2008 until 2018 (more details below). This data was originally collected to experiment with a model that generates personalized recipes as explained in Majumder et al's research paper, [Generating Personalized Recipes from Historical User Preferences](https://cseweb.ucsd.edu/~jmcauley/pdfs/emnlp19c.pdf).
 
 `recipes`, has 83782 rows, one for each recipe. 
+
 | Column | Description |
 | ----------- | ----------- |
 | 'name' | recipe name |
@@ -32,7 +33,8 @@ In this project, we analyze two datasets, `recipes` and `interactions`, from [fo
 ℹ️ (calories (#), total fat (PDV), sugar (PDV) , sodium (PDV) , protein (PDV) , saturated fat (PDV) , and carbohydrates (PDV))
 
  `interactions` has 731927 rows, each corresponding to a rating left for a recipe. 
- | Column | Description |
+ 
+| Column | Description |
 | ----------- | ----------- |
 | 'user_id' | user ID |
 | 'recipe_id' | recipe ID |
