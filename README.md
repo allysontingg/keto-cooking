@@ -252,7 +252,7 @@ Moving on to investigate the missingness of the 'description' column, we hypothe
 **α** = 0.05
 
 <iframe
-  src="plots/cals-missi-descr.html"
+  src="cals-missi-descr.html"
   width="800"
   height="600"
   frameborder="0"
@@ -281,7 +281,7 @@ Because the p-value for our experiment is greater than our significance level of
 **α** = 0.05
 
 <iframe
-  src="plots/ingr-missi-descr.html"
+  src="ingr-missi-descr.html"
   width="800"
   height="600"
   frameborder="0"
@@ -290,7 +290,7 @@ Because the p-value for our experiment is greater than our significance level of
 The distributions of the number of ingredients for recipes with (orange) and without descriptions (blue) appear to have the same general shape, but the distribution of recipes with descriptions has much more variation and is perhaps shifted slightly right of the missing descriptions distribution. There are many more recipes with descriptions than without, so this could lead to the variation we observe. To investigate, we ran another permutation test, but this time with 'num_ingredients'.
 
 <iframe
-  src="plots/ingr-diff-missi-descr.html"
+  src="ingr-diff-missi-descr.html"
   width="800"
   height="600"
   frameborder="0"
@@ -313,7 +313,7 @@ To answer part of this question, we are interested in the popularity of the keto
 We split our dataset into two groups, recipes rated in the years 2008-2012 and those rated from 2013-2018. Note that these time intervals contain all entries in our dataset and we assume that users rated recipes that they actually cooked, so recipes *made* is the same as recipes *rated*.
 
 <iframe
-  src="plots/k-nonk-per-yr.html"
+  src="k-nonk-per-yr.html"
   width="800"
   height="600"
   frameborder="0"
@@ -330,7 +330,7 @@ Most recipes, keto or non-keto, were made in the first half of our time interval
 **α** = 0.05
 
 <iframe
-  src="plots/keto-time.html"
+  src="keto-time.html"
   width="800"
   height="600"
   frameborder="0"
@@ -423,7 +423,7 @@ Does my model perform worse for recipes that did not receive the highest rating 
 ---
 
 <iframe
-  src="plots/prec-diff-5-non5.html"
+  src="prec-diff-5-non5.html"
   width="800"
   height="600"
   frameborder="0"
