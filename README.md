@@ -55,7 +55,7 @@ To tailor the `recipes` and `interactions` datasets for our use, we conducted th
 **Merge the datasets**
 
 
-[x] Left merge `recipes` and `interactions` on 'id' and 'recipe_id' respectively.
+- [x] Left merge `recipes` and `interactions` on 'id' and 'recipe_id' respectively.
 - The resulting dataframe has 234429 rows which each correspond with a unique rating, recipe pair.
 
 **Check all data types to identify further cleaning.**
@@ -81,10 +81,10 @@ To tailor the `recipes` and `interactions` datasets for our use, we conducted th
 | review         | object  |
 
 
-[x] Convert 'submitted' and 'date' to *datetime* data type and keep only the year.
+- [x] Convert 'submitted' and 'date' to *datetime* data type and keep only the year.
 - Our investigation is interested in keto's fluctuating influence over the time interval of our data so converting to *datetime* allows easy selection of the year to reduce noise, and renaming improves readability. 'date' is quite an ambiguous label.
 
-[x] Split the 'nutrition' column.
+- [x] Split the 'nutrition' column.
 - 'nutrition' can be split into 7 columns of type *float*, `'calories (#)'`, `'total fat (PDV)'`, `'sugar (PDV)'`, `'sodium (PDV)'`, `'protein (PDV)'`, `'saturated fat (PDV)'`, and `'carbohydrates (PDV)'`, as per the column description for 'nutrition'. This allows numerical manipulation of individual nutrient columns and ultimately allows us to define our 'is_keto' column.
 
 **Fill all 0 values in 'rating' column with Nan.**
@@ -97,13 +97,13 @@ To tailor the `recipes` and `interactions` datasets for our use, we conducted th
 
 **Calculate proportion of calories for each nutrient.**
 
-[x] Convert PDVs to grams
+- [x] Convert PDVs to grams
   - PDV stands for Percent Daily Value. Following, there are DVs or suggested Daily Values in grams for different nutrients. Multiplying the PDVs in each nutrient's column by the DVs given by the [FDA](https://www.fda.gov/food/nutrition-facts-label/daily-value-nutrition-and-supplement-facts-labels), we get the nutrition information for each recipe in **grams**. This is an intermediate step to our ultimate goal of calculating the proportion of calories for each nutrient.
 
-[x] Convert grams to calories
+- [x] Convert grams to calories
   - With our nutrient columns now in grams, we construct a model to fit what calorie counts were used in our data. We used the coefficients of this model to assign how many calories are in each gram of fat, protein, and carbohydrate. These values get multiplied to the corresponding nutrients' columns to get **calories** of fat, protein, and carbohydrate in each recipe. 
 
-[x] Calculate proportions
+- [x] Calculate proportions
   - We divide the calories of fat, protein, and carbohydrate by the total calorie count from the original 'nutrition' column to get the separate proportions of a recipe's calories that are fat, protein, and carbohydrate. These proportions define a recipe as keto or not.
 
   - The final columns are named 'prop_fat', 'prop_protein', and 'prop_carb'.
