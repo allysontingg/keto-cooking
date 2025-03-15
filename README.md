@@ -309,6 +309,7 @@ Recall our overall question:
 
 To answer part of this question, we are interested in the popularity of the keto diet over time, specifically 2008-2018 for our dataset. 
 > Did people start cooking more keto recipes as the diet approached its peak popularity in 2020?
+
 We split our dataset into two groups, recipes rated in the years 2008-2012 and those rated from 2013-2018. Note that these time intervals contain all entries in our dataset and we assume that users rated recipes that they actually cooked, so recipes *made* is the same as recipes *rated*.
 
 <iframe
@@ -318,7 +319,8 @@ We split our dataset into two groups, recipes rated in the years 2008-2012 and t
   frameborder="0"
 ></iframe>
 
-Most recipes, keto or non-keto, were made in the first half of our time interval, so we will continue our investigation using proportions of recipes in their respective time intervals. i.e. #keto recipes 2008-2012 ÷ #recipes 2008-2012
+Most recipes, keto or non-keto, were made in the first half of our time interval, so we will continue our investigation using proportions of recipes in their respective time intervals. 
+- #keto recipes 2008-2012 ÷ #recipes 2008-2012
 
 **NULL Hypothesis**: The proportion of keto recipes made in the second half of our interval (2013-2018) is the same as the proportion of Keto recipes made in the first half of our time interval (2008-2012).
 **ALTERNATIVE Hypothesis**: A higher proportion of keto recipes were made from 2013 to 2018. As we approached 2020, the influence of the keto diet grew. 
@@ -334,7 +336,7 @@ Most recipes, keto or non-keto, were made in the first half of our time interval
   frameborder="0"
 ></iframe>
 
-With a p-value of 0.00, we reject the null hypothesis and conclude that significantly more Keto recipes were made in 2013-2018 as compared to 2008-2012, in terms of proportions. Of all recipes made within 20013-2018, the proportion of them that are Keto is significantly higher than the proportion of Keto recipes out of all recipes made within 2008-2012. This suggests that Keto seems to have had more influence in the years 2013-2018, but this is only the findings from one dataset and more research would have to be done to made a broader statement about the influence of the Keto diet on people's cooking habits over time.
+With a p-value of 0.00, we **reject the null hypothesis** and conclude that significantly more Keto recipes were made in 2013-2018 as compared to 2008-2012, in terms of proportions. Of all recipes made within 20013-2018, the proportion of them that are Keto is significantly higher than the proportion of Keto recipes out of all recipes made within 2008-2012. This suggests that Keto seems to have had more influence in the years 2013-2018, but this is only the findings from one dataset and more research would have to be done to made a broader statement about the influence of the Keto diet on people's cooking habits over time.
 
 ## Framing a Prediction Problem
 
@@ -384,11 +386,12 @@ Because the keto diet is defined along strict nutrient requirements, it is reaso
 
 ---
 We used all 5 of these features in a RandomForestClassifier as our prediction model. To select our max_depth hyperparameter, we used GridSearchCV to determine the best max_depth of 32 for our classifier. Decision tree classifiers are prone to overfitting and high variance, so fitting a max_depth prevents these negative traits of our modeling algorithm. 
+
 ---
 
 Our final model is a RandomFroestClassifer with a max_depth of 32 and 100 n_estimators. The f1-score on the training set is 0.928, 0.813 for the test set, and 0.911 on our entire dataset. This is a 0.229 increase from our baseline model and a 0.228 increase from the model that predicts all non-keto. Our final model is drastically more accurate than our baseline model.
 
-Our final model's performance on test data:
+### Our final model's performance on test data:
 
 ![Confusion Matrix](confusion-matrix.jpg)
 False = not keto, True = keto
