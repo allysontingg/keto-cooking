@@ -261,7 +261,7 @@ Moving on to investigate the missingness of the 'description' column, we hypothe
 It seems that the distributions of calories for recipes with (orange) and without descriptions (blue) is about the same. To better understand this relationship, we ran a permutation test by shuffling the 'num_calories' column, finding the mean number of calories of recipes with and without descriptions, and calculating the absolute difference in means. 
 
 <iframe
-  src="plots/cals-diff-missi-descr.html"
+  src="cals-diff-missi-descr.html"
   width="800"
   height="600"
   frameborder="0"
