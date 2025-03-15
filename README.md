@@ -30,6 +30,7 @@ In this project, we analyze two datasets, `recipes` and `interactions`, from [fo
 | 'ingredients' | list of ingredient names |
 | 'n_ingredients' | number of ingredients |
 
+
 ℹ️ (calories (#), total fat (PDV), sugar (PDV) , sodium (PDV) , protein (PDV) , saturated fat (PDV) , and carbohydrates (PDV))
 
  `interactions` has 731927 rows, each corresponding to a rating left for a recipe. 
@@ -42,6 +43,7 @@ In this project, we analyze two datasets, `recipes` and `interactions`, from [fo
 | 'rating' | rating given |
 | 'review' | review text |
 
+
 The most relevant columns for our investigation are `'submitted'`, `'date'`, `'nutrition'`, `'tags'`, `'n_steps'`, and `'n_ingredients'`, all described above. 
 
 ## Data Cleaning and Exploratory Data Analysis
@@ -50,12 +52,13 @@ The most relevant columns for our investigation are `'submitted'`, `'date'`, `'n
 
 To tailor the `recipes` and `interactions` datasets for our use, we conducted the following steps.
 
-1. Merge the datasets 
+**Merge the datasets**
 
-- [x] Left merge `recipes` and `interactions` on 'id' and 'recipe_id' respectively.
+
+[x] Left merge `recipes` and `interactions` on 'id' and 'recipe_id' respectively.
 - The resulting dataframe has 234429 rows which each correspond with a unique rating, recipe pair.
 
-2. Check all data types to identify further cleaning.
+**Check all data types to identify further cleaning.**
 
 | Column Name    | dtype   |
 |:---------------|:--------|
@@ -77,46 +80,47 @@ To tailor the `recipes` and `interactions` datasets for our use, we conducted th
 | rating         | float64 |
 | review         | object  |
 
-- [x] Convert 'submitted' and 'date' to *datetime* data type and keep only the year.
+
+[x] Convert 'submitted' and 'date' to *datetime* data type and keep only the year.
 - Our investigation is interested in keto's fluctuating influence over the time interval of our data so converting to *datetime* allows easy selection of the year to reduce noise, and renaming improves readability. 'date' is quite an ambiguous label.
 
-- [x] Split the 'nutrition' column.
+[x] Split the 'nutrition' column.
 - 'nutrition' can be split into 7 columns of type *float*, `'calories (#)'`, `'total fat (PDV)'`, `'sugar (PDV)'`, `'sodium (PDV)'`, `'protein (PDV)'`, `'saturated fat (PDV)'`, and `'carbohydrates (PDV)'`, as per the column description for 'nutrition'. This allows numerical manipulation of individual nutrient columns and ultimately allows us to define our 'is_keto' column.
 
-3. Fill all 0 values in 'rating' column with Nan.
+**Fill all 0 values in 'rating' column with Nan.**
 
 - Ratings of 0 indicate that the reviewer did not leave a rating, so we fill 0 values with np.nan to avoid bias in our analysis.
 
-4. Add an 'avg_rating' column.
+**Add an 'avg_rating' column.**
 
 - A recipe can be rated multiple times, so averaging the ratings gives each recipe a comprehensive rating which is useful for analyses that compare unique recipes.
 
-5. Calculate proportion of calories for each nutrient
+**Calculate proportion of calories for each nutrient.**
 
-  - [x] Convert PDVs to grams
+[x] Convert PDVs to grams
   - PDV stands for Percent Daily Value. Following, there are DVs or suggested Daily Values in grams for different nutrients. Multiplying the PDVs in each nutrient's column by the DVs given by the [FDA](https://www.fda.gov/food/nutrition-facts-label/daily-value-nutrition-and-supplement-facts-labels), we get the nutrition information for each recipe in **grams**. This is an intermediate step to our ultimate goal of calculating the proportion of calories for each nutrient.
 
-  - [x] Convert grams to calories
+[x] Convert grams to calories
   - With our nutrient columns now in grams, we construct a model to fit what calorie counts were used in our data. We used the coefficients of this model to assign how many calories are in each gram of fat, protein, and carbohydrate. These values get multiplied to the corresponding nutrients' columns to get **calories** of fat, protein, and carbohydrate in each recipe. 
 
-  - [x] Calculate proportions
+[x] Calculate proportions
   - We divide the calories of fat, protein, and carbohydrate by the total calorie count from the original 'nutrition' column to get the separate proportions of a recipe's calories that are fat, protein, and carbohydrate. These proportions define a recipe as keto or not.
 
   - The final columns are named 'prop_fat', 'prop_protein', and 'prop_carb'.
 
-6. Strip brackets and commas from 'tags' column
+**Strip brackets and commas from 'tags' column.**
 
 - Tags are often used in search engines because they can be very telling about recipes, in our case. Our idea is that the tags may be a characteristic that helps classify a recipe as keto or not. Stripping the brackets and commas gives rows of tags separated by spaces which allows us to easily test our idea further in this project. 
 
-7. Add an `'is_dessert'` column
+**Add an `'is_dessert'` column.**
 
 - `'is_dessert'` is a boolean column that checks if the tags of a recipe contains 'dessert' becasue desserts will contain more carbohydrates and therefore desserts may be less likely to be ketogenic.
 
-8. Add an 'is_keto' column
+**Add an 'is_keto' column.**
 
 - Congruent with the ketogenic requirements in the Introduction, 'is_keto' is True for recipes with 'prop_fat' >= 0.50 and 'prop_protein' >= 0.10 and False otherwise. These requirements ensure that 'prop_carb' is limited as per the high-fat, low-carb ideology of keto. The column will allow the analysis of the other columns in our dataset for keto vs. non-keto recipes. 
 
-9. Select useful columns 
+**Select useful columns.**
 
 - At this point, the merged dataframe has a massive, 38 columns. To avoid dealing with such a large dataframe, we select the columns useful for the rest of this project.
 
@@ -143,8 +147,8 @@ To tailor the `recipes` and `interactions` datasets for our use, we conducted th
 
 - Our cleaned dataframe has 234429 rows and 18 columns, each row referring to a unique recipe, review pair. The first 5 rows are displayed below.
 
-|    |   recipe_id | name                                 |   submitted |   date_rated |   rating |   avg_rating | tags                                                                                                                                                                             | description                                                                                                                                                                                                                                                                                                                                                                       | is_dessert   |   minutes |   n_steps |   n_ingredients | nutrition                                    |   num_calories |   prop_fat |   prop_protein |   prop_carb | is_keto   |
-|---:|------------:|:-------------------------------------|------------:|-------------:|---------:|-------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------|----------:|----------:|----------------:|:---------------------------------------------|---------------:|-----------:|---------------:|------------:|:----------|
+|    |   recipe_id | name |   submitted |   date_rated |   rating |   avg_rating | tags | description | is_dessert   |   minutes |   n_steps |   n_ingredients | nutrition |   num_calories |   prop_fat |   prop_protein |   prop_carb | is_keto   |
+|---:|------------:|:------------|------------:|------------:|------------:|------------:|:------------|:------------|:------------|------------:|------------:|------------:|:------------|------------:|------------:|------------:|------------:|:------------|
 |  0 |      333281 | 1 brownies in the world    best ever |        2008 |         2008 |        4 |            4 | 60-minutes-or-less time-to-make course main-ingredient preparation for-large-groups desserts lunch snacks cookies-and-brownies chocolate bar-cookies brownies number-of-servings | these are the most; chocolatey, moist, rich, dense, fudgy, delicious brownies that you'll ever make.....sereiously! there's no doubt that these will be your fav brownies ever for you can add things to them or make them plain.....either way they're pure heaven!                                                                                                              | True         |        40 |        10 |               9 | [138.4, 10.0, 50.0, 3.0, 3.0, 19.0, 6.0]     |          138.4 |   0.427344 |      0.0499551 |    0.522701 | False     |
 |  1 |      453467 | 1 in canada chocolate chip cookies   |        2011 |         2012 |        5 |            5 | 60-minutes-or-less time-to-make cuisine preparation north-american for-large-groups canadian british-columbian number-of-servings                                                | this is the recipe that we use at my school cafeteria for chocolate chip cookies. they must be the best chocolate chip cookies i have ever had! if you don't have margarine or don't like it, then just use butter (softened) instead.                                                                                                                                            | False        |        45 |        12 |              11 | [595.1, 46.0, 211.0, 22.0, 13.0, 51.0, 26.0] |          595.1 |   0.442018 |      0.048675  |    0.509307 | False     |
 |  2 |      306168 | 412 broccoli casserole               |        2008 |         2008 |        5 |            5 | 60-minutes-or-less time-to-make course main-ingredient preparation side-dishes vegetables easy beginner-cook broccoli                                                            | since there are already 411 recipes for broccoli casserole posted to "zaar" ,i decided to call this one  #412 broccoli casserole.i don't think there are any like this one in the database. i based this one on the famous "green bean casserole" from campbell's soup. but i think mine is better since i don't like cream of mushroom soup.submitted to "zaar" on may 28th,2008 | False        |        40 |         6 |               9 | [194.8, 20.0, 6.0, 32.0, 22.0, 36.0, 3.0]    |          194.8 |   0.576567 |      0.247128  |    0.176305 | True      |
