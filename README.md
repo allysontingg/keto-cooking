@@ -159,8 +159,8 @@ To tailor the `recipes` and `interactions` datasets for our use, we conducted th
 
 <iframe
   src="num-cals.html"
-  width="300"
-  height="200"
+  width="400"
+  height="300"
   frameborder="0"
 ></iframe>
 
