@@ -154,7 +154,7 @@ To tailor the `recipes` and `interactions` datasets for our use, we conducted th
 ### Univariate Analysis
 
 <iframe
-  src="plots/num-cals.html"
+  src="num-cals.html"
   width="800"
   height="600"
   frameborder="0"
