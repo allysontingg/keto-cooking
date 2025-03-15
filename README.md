@@ -431,7 +431,7 @@ Does my model perform worse for recipes that did not receive the highest rating 
 
 To perform this permutation test, we created a new boolean column 'full_rating' with True values being full ratings of 5.00 and False being any rating besides 5.00. We shuffled 'full_rating' 1000 times and calculated the difference in precision according to the test statistic description above. 
 
-We get a p-value of 0.21 which is well above our significance level of 0.05, so we fail to reject the null hypothesis and conclude that there is insufficient evidence to suggest that our model is unfair. Our model is most likely fiar, having approximately equal precision when predicting whether a recipe is keto or non-keto, regardless of the rating of the recipe.
+We get a p-value of 0.44 which is well above our significance level of 0.05, so we fail to reject the null hypothesis and conclude that there is insufficient evidence to suggest that our model is unfair. Our model is most likely fiar, having approximately equal precision when predicting whether a recipe is keto or non-keto, regardless of the rating of the recipe.
 
 ## Final Thoughts
 
